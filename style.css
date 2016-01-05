@@ -1,0 +1,70 @@
+.title-img {
+    width: 100%;
+}
+
+body {
+    font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+
+.outer-container {
+    margin: 0 auto;
+    width: 70%;
+
+}
+
+.intro, .leader, article {
+    border: 2px solid #bbb;
+    border-radius: 3px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.chapter-group-title {
+    margin: 60px 0 20px;
+    padding: 5px;
+    text-align: center;
+    border-bottom: 2px solid #bbb;
+}
+
+ul {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: #666;
+}
+
+a:visited {
+    color: #bbb;
+}
+
+p {
+    text-indent: 1em;
+    line-height: 1.5;
+}
+
+.chapter-img {
+    width: 50%;
+    float: left;
+}
+
+.chapter-head {
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.chapter-title {
+    text-align: center;
+}
+
+.chapter-info {
+    width: 50%;
+    float: left;
+}
+
+.chapter-info.full {
+    width: 100%;
+}
