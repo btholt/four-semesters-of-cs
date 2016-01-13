@@ -9,7 +9,7 @@ body {
 .outer-container {
     margin: 0 auto;
     width: 70%;
-
+    max-width: 600px;
 }
 
 .intro, .leader, article {
@@ -67,4 +67,12 @@ p {
 
 .chapter-info.full {
     width: 100%;
+}
+
+a[href="#"] {
+    color: red;
+}
+
+.invisible {
+    visibility: hidden;
 }

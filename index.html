@@ -9,18 +9,19 @@
 <body>
     <img class="title-img" src="img/header.jpg" alt="Banner Title Image, Four Semesters of Computer Science in Six Hours" />
     <div class="outer-container">
-        <section class="leader">
+        <article class="leader">
+            <button id="start">Start Presentation</button>
             <ul class="leader-links">
                 <li class="leader-link"><a href="https://twitter.com/holtbt">Brian Holt</a></li>
                 <li class="leader-link"><a href="https://github.com/btholt/four-semesters-of-cs">GitHub</a></li>
                 <li class="leader-link"><a href="http://forwardjs.com/workshop/four-semesters-of-computer-science-in-six-hours">ForwardJS</a></li>
             </ul>
-        </section>
-        <section class="intro">
+        </article>
+        <article class="intro">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore praesentium repudiandae atque quasi quod fugit veniam aut error beatae harum?</p>
             <p>Aperiam explicabo veritatis sapiente aliquam ratione, suscipit recusandae obcaecati, delectus eius aliquid laboriosam optio quisquam quae nihil. Error, quis, nostrum.</p>
             <p>Minus numquam doloremque quibusdam dignissimos fugit voluptas, facilis cum earum fugiat repellendus, tenetur possimus? Porro dignissimos maiores ex? Aperiam, rem.</p>
-        </section>
+        </article>
         <section class="chapters">
 
             <h2 class="chapter-group-title">Important CS Concepts</h2>
@@ -36,7 +37,101 @@
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Big O is the way we anaylze how efficient algorithms (or code in this case) without getting too mired in the details. We can model how much time any function is going to take given <em>n</em> inputs, but in reality we're intested in the order of magnitude of the number and necessarily of the exact figure.
+                    </p>
+
+                    <p>
+                        Example: I don't particularly care if a function takes 300 milliseconds versus 330 milliseconds given 1,000 inputs, but I <em>do</em> care if it takes 300 millseconds versus 30 seconds. This would be a difference in an order of magnitude, or basically we're saying we only care if the difference is pretty large.
+                    </p>
+
+                    <p>
+                        Enter Big O. Think of the O as a vacuum that sucks in all the unimportant information and just leaves you with the important stuff. Let's look at a purely mathemtical perspective for a second. Say we have the equation <code>3x² + x + 1</code>. If we plug in 5, the first term will be 75, the second term will be 5, and the third will be 1. In other words, most of the piece of the pie comes from the first term, to the point we can just ignore the other terms. If we plug in huge numbers, it becomes even more apparent. IE if we do 5,000,000, the first term is 75,000,000,000,000, the second is 5,000,000, and the last 1. A huge gap.
+                    </p>
+
+                    <p>
+                        Hence this is what Big O does; we ignore the little parts and concentrate on the big parts. Keeping with <code>3x² + x + 1</code>, the Big O for this equation would be <code>O(n²)</code> where O is just absorbing all the other fluff (including the factor on the biggest term.) Just grab the biggest term. So for <em>n</em> terms, it's going take us n*n time to go through our inputs. So let's see how to derive this from an algorithm.
+                    </p>
+
+                    <pre><code>
+function crossAdd(input) {
+    var answer = [];
+    for (var i = 0; i < input.length; i++) {
+        var goingUp = input[i];
+        var goingDown = input[input.length-1-i];
+        answer.push(goingUp + goingDown);
+    }
+    return answer;
+}
+
+                    </code></pre>
+
+                    <p>
+                        This is <code>O(n)</code> because we go through all the inputs once in a loop.
+                    </p>
+
+                    <pre><code>
+function find(needle, haystack) {
+    for (int i=0; i < haystack.length; i++) {
+        if (haystack[i] === needle) return true;
+    }
+}
+
+                    </code></pre>
+
+                    <p>
+                        Still <code>O(n)</code>. Unless we say otherwise, we're assuming worst case scenario. In this worst case, the needle would be the last element.
+                    </p>
+
+                    <pre><code>
+function makeTuples(input) {
+    var answer = [];
+    for (var i = 0; i < input.length; i++) {
+        for (var j = 0; j < input.length; j++) {
+            answer.push([input[i], input[j]]);
+        }
+    }
+    return answer;
+}
+                    </code></pre>
+
+                    <p>
+                        This would be <code>O(n²)</code>. For every input, we have to go through a full loop inside of another full loop, meaning we're doing a lot of work! This is the trick: look for loops. A loop inside of a loop inside of a loop would likewise be <code>O(n³)</code>.
+                    </p>
+
+                    <p>
+                        If we have no loops and just do something and exit/return, then it's said we're doing it in constant time, or <code>O(1)</code>.
+                    </p>
+
+                    <p>
+                        We'll get more into it later, but you can also have <code>O(log n)</code> if a code employs a divide-and-conquer strategy (often recursive,) meaning as you add more terms, the increases in time as you add input diminshes. We'll talk more about that with merge and quick sort.
+                    </p>
+
+
+                </div>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <img class="chapter-img" src="img/recursion.png" alt="Recursive triangles to demonstrate how recursion is things defined being defined by they themselves" />
+                    <div class="chapter-info">
+                        <h3 class="chapter-title">Recursion</h3>
+                        <ul class="chapter-links">
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/rxwEVQ?editors=001">Example</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/QyMjNa?editors=001">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/obwrOB?editors=001">Answer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Recursion is when you define something in terms of itself. Has anyone ever used the word you wanted defined in the definition that they gave you? "What is a computer?" "It's something that computes things." This would be a <em>recursive</em> definition.
+                    </p>
+
+                    <p>
+                        When we talk about recursion in computer science, we are talking about a function that calls itself. This technique is especially adept at some problems because of its ability to maintain state at different levels of recursion.
+                    </p>
+
+                    <p>
+                        While recursion can make the code very simple for some problems, it inherently carries a potentially large footprint with it as everytime you call the function, it adds another call to the stack. Some problems therefore are better solved in a slightly-more-complicated-but-more-effecient way of iteration (loops) instead of recursion.
                     </p>
                 </div>
             </article>
@@ -48,14 +143,21 @@
                     <div class="chapter-info">
                         <h3 class="chapter-title">Bubble Sort</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/PZKPjj?editors=001">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/KdYPqa?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Our first sort! This is often the easiest to conceptualize and a natural way for the brain to think about sorting so it's typical to do bubble sort first. It's also amongst the least efficient in terms of worst case scenario.
+                    </p>
+
+                    <p>
+                        In bubble sort, we're going to loop through the array and compare each index with the index next to it. If the those two numbers are out of order (the lesser index's value is greater than the greater index's value) we swap those two numbers' places in the array. We keep looping over that array until everything is in place and nothing was swapped during the last iteration.
+                    </p>
+                    <p>
+                        What's the Big O on this? Well, there's an inner loop to check to see if indexes need to be swapped, and an outer loop that's just checking to see if anything was swapped. That would be make it O(n²). Not efficent, but a great learning tool. You'll never use bubble sort for anything serious.
                     </p>
                 </div>
             </article>
@@ -66,7 +168,7 @@
                         <h3 class="chapter-title">Insertion Sort</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/meYQPd?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,7 +185,7 @@
                         <h3 class="chapter-title">Merge Sort</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/rOEdKK?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -119,7 +221,7 @@
                         <h3 class="chapter-title">Array List</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/dGOaXX?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -136,7 +238,7 @@
                         <h3 class="chapter-title">Linked List</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/eJBBEY?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,7 +255,7 @@
                         <h3 class="chapter-title">Binary Search Tree</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/EPPWmy?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -170,7 +272,7 @@
                         <h3 class="chapter-title">AVL Tree</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/rxLOOp?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -265,7 +367,66 @@
                     </p>
                 </div>
             </article>
+
+            <h2 class="chapter-group-title">Functional Programming 101</h2>
+            <article class="intro">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore praesentium repudiandae atque quasi quod fugit veniam aut error beatae harum?</p>
+                <p>Aperiam explicabo veritatis sapiente aliquam ratione, suscipit recusandae obcaecati, delectus eius aliquid laboriosam optio quisquam quae nihil. Error, quis, nostrum.</p>
+                <p>Minus numquam doloremque quibusdam dignissimos fugit voluptas, facilis cum earum fugiat repellendus, tenetur possimus? Porro dignissimos maiores ex? Aperiam, rem.</p>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <div class="chapter-info full">
+                        <h3 class="chapter-title">Map</h3>
+                        <ul class="chapter-links">
+                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="#">Answer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                    </p>
+                </div>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <div class="chapter-info full">
+                        <h3 class="chapter-title">Reduce</h3>
+                        <ul class="chapter-links">
+                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="#">Answer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                    </p>
+                </div>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <div class="chapter-info full">
+                        <h3 class="chapter-title">Filter</h3>
+                        <ul class="chapter-links">
+                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="#">Answer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                    </p>
+                </div>
+            </article>
+
+            <h2 class="chapter-group-title">The End!</h2>
+
         </section>
     </div>
+    <script src="pres.js"></script>
 </body>
 </html>
