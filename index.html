@@ -157,7 +157,7 @@ function makeTuples(input) {
                         In bubble sort, we're going to loop through the array and compare each index with the index next to it. If the those two numbers are out of order (the lesser index's value is greater than the greater index's value) we swap those two numbers' places in the array. We keep looping over that array until everything is in place and nothing was swapped during the last iteration.
                     </p>
                     <p>
-                        What's the Big O on this? Well, there's an inner loop to check to see if indexes need to be swapped, and an outer loop that's just checking to see if anything was swapped. That would be make it O(n²). Not efficent, but a great learning tool. You'll never use bubble sort for anything serious.
+                        What's the Big O on this? Well, there's an inner loop to check to see if indexes need to be swapped, and an outer loop that's just checking to see if anything was swapped. That would be make it <code>O(n²)</code>. Not efficent, but a great learning tool. You'll never use bubble sort for anything serious.
                     </p>
                 </div>
             </article>
@@ -167,14 +167,20 @@ function makeTuples(input) {
                     <div class="chapter-info">
                         <h3 class="chapter-title">Insertion Sort</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/mVMMxj?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/meYQPd?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Insertion sort is a step more complex but a bit more useful than bubble sort and is occasionally useful. The worst case scenario for it is similar to bubble sort's but its best case makes it suited for times when you're pretty sure a list <em>almost</em> sorted or likely already sorted.
+                    </p>
+                    <p>
+                        We're going to start at the beginning of the list and assume we have a sorted list of length 1 where the first element is only sorted element. We're then going to grab the second element, and insert it into the correct spot in our sorted list, either the 0 index or the 1 index, depending if it's smaller or larger than our first element. We now have a sorted list of length 2. We then continue on down the line, inserting elements in our sorted side of the list as the unsorted side dwindles.
+                    </p>
+                    <p>
+                        What's the Big O? There's an inner loop that goes over your sorted list to find the correct place to insert your item, and an outer loop to go over all the numbers. Two loops means <code>O(n²)</code>. However since if your list is sorted or nearly so, it can be <code>O(n)</code> in a best case scenario and thus well adapted to that scenario.
                     </p>
                 </div>
             </article>
@@ -184,14 +190,40 @@ function makeTuples(input) {
                     <div class="chapter-info">
                         <h3 class="chapter-title">Merge Sort</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/PZKgQd?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/rOEdKK?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Our first divide-and-conquer algorithm! Merge sort is actually <em>very</em> useful and one of the easier divide-and-conquer algorithms to understand. It's easier to conceptualize than some of the other ones. A key to merge sort is that it is <em>recursive</em>. If you're struggling to grasp recursion, this is going to be doubly hard to understand this algorithm.
+                    </p>
+                    <p>
+                        The basic gist of merge sort is that you're going to take your big list, and first divide down in two half size lists and recursively call merge sort on those smaller list, which in turn will do the same. The base case is when you have a list of one, at which point you will return that sorted list of one. On the way up the recursive calls, you will merge those sorted lists together (preferably by another merge function you'll write) that walks through both lists simaltaneously and inserts the smaller value first, effectively creating a bigger sorted list.
+                    </p>
+                    <pre><code>
+[1, 5, 6] sublist 1
+[2, 7, 8] sublist 2
+
+-> compare 1 and 2, take 1 and put it in new list
+-> compare 5 and 2, take 2 and put it in new list
+-> compare 5 and 7, take 5 and put it in new list
+-> compare 6 and 7, take 6 and put it in new list
+-> list one has no more elements
+   add the rest of list two in order (7 and 8)
+                    </code></pre>
+
+                    <p>
+                        This combined merge with the divide-and-conquer recursion proves to be pretty effective. When you call <code>Array.prototype.sort</code> it often uses MergeSort (depending on the engine and the types of the elements in the array.) MergeSort is also <em>stable</em> which just means if you have equivalent elements, it will keep their original order in the array. This is sometimes important and sometimes not.
+                    </p>
+
+                    <p>
+                        MergeSort's Big O is <code>O(n log n)</code>. Weird, right? We obviously have to compare everything once, but we don't have to compare everything to everything like we do with bubble sort. Rather we just to have to compare to their local lists as we sort. Not too bad.
+                    </p>
+
+                    <p>
+                        MergeSort's space complexity is a bit worse than the previous algorithms at <code>O(n)</code> since we have to create new lists as we go. It's not awful but it nonethless a consideration.
                     </p>
                 </div>
             </article>
