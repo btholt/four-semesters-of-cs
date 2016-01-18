@@ -233,14 +233,41 @@ function makeTuples(input) {
                     <div class="chapter-info">
                         <h3 class="chapter-title">Quick Sort</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/pgWVQM?editors=001">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/bEoGxa?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Quicksort is one of the most useful and powerful sorting algorithms out there, and it's not terribly difficult to conceptualize (compared to some algorithms we're not talking about anyway.) Above I mentioned that occasionally JavaScript doesn't mergesort for <code>Array.prototype.sort</code>. In those other cases, it's usually some variant on quicksort.
+                    </p>
+                    <p>
+                        It's another divide-and-conquer, recursive algorithm but it takes a slightly different approach. The basic gist is that you take the last element in the list and call that the pivot. Everything that's smaller than the pivot gets put into a "left" list and everything that's greater get's put in a "right" list. You then call quick sort on the left and right lists independently (hence the recursion.) After those two sorts come back, you concatenate the sorted left list, the pivot, and then the right list (in that order.) The base case is when you have a list of length 1 or 0, where you just return the list given to you.
+                    </p>
+                    <pre><code>
+[4,9,3,5] list
+-> 5 is made the pivot since it's the last in the array
+-> divide list into two lists, [4,3] and [9]
+-> call quicksort on those two lists
+
+[4, 3]
+-> 3 is pivot
+-> call quicksort on [] and [4]
+-> those both return as is as they are the base case of length 0 or 1
+-> concat [], 3, and [4]
+-> return [3,4]
+
+[9]
+-> returns as this it is a base case of length 1
+
+(back into the original function call)
+-> call concat on [3,4], 5, and [9]
+-> return [3,4,5,9]
+                    </code></pre>
+
+                    <p>
+                        Another Big O of <code>O(n log n)</code> but takes up less memory than mergesort so it is often favored. However it does really poorly if you pass it a sorted list. Think about it. It would always have a pivot of the biggest number which defeats the effectiveness of the divide-and-conquer approach as one side will always contain all the elements. Hence not good for lists you expect may already be sorted. There are some tricks to employ to get around that like checking the beginning, middle, and end numbers and swapping them to try to get the best pivot, but that's outside our scope today. There are a lot of subtle variants on quicksort.
                     </p>
                 </div>
             </article>
@@ -252,14 +279,26 @@ function makeTuples(input) {
                     <div class="chapter-info">
                         <h3 class="chapter-title">Array List</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/adLxyv?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/dGOaXX?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        We are going to talk about two types of implementations of array, ArrayList and LinkedList (terms we're borrowing from Java.) What we're going to do is to approximate how these work underneath the hood; in reality since JavaScript is a garbage-collected language that you don't have worry about allocation and de-allocation, it is simplified.
+                    </p>
+                    <p>
+                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indicies in the array. In other words, you just treat it like a normal array. However things get a mite more complicated when delete items from an ArrayList: you have the collapse the list down the spot where you deleted.
+
+                        <pre><code>
+[a,b,c,d,e,f,g]
+-> delete index 3
+-> array is [a,b,c,(blank),e,f,g]
+-> shift elements 4,5,6 back one index
+-> array is [a,b,c,e,f,g]
+-> decrement length
+                        </code></pre>
                     </p>
                 </div>
             </article>
@@ -269,14 +308,33 @@ function makeTuples(input) {
                     <div class="chapter-info">
                         <h3 class="chapter-title">Linked List</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/adLxEd?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/eJBBEY?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        For our second data structure, we're going to implement a LinkedList. LinkedList is made of a bunch of nodes that point to the next one in the list. Every node in a LinkedLists has two properties, the value of whatever is being store and a pointer to the next node in the list.
+                    </p>
+                    <p>
+                        LinkedLists have their ups and downs. On one hand, adding and removing is a breeze: you just have the change the next pointer on the previous node and that's it. Getting is a pain though: if <code>.get</code> is called you have to loop through the nodes until you get to the right node. And that's the tradeoff between LinkedList and ArrayList: LinkedList's adds and deletes are <code>O(1)</code> but the gets are <code>O(n)</code>; ArrayList's adds and deletes are <code>O(n)</code> but the gets are <code>O(1)</code>. So which one is better? It depends! If you're doing a bunch of adds and deletes but not many gets, stick to LinkedLists. Doing a bunch of gets? ArrayLists. Both? You decide!
+                    </p>
+                    <p>Let's dissect a delete.</p>
+                    <pre><code>
+value: [a]   [b]   [c]   [d]
+next:  [ ]-> [ ]-> [ ]-> [ ]-> null
+
+-> delete is called on index 2 (value 'c')
+-> grab the head (value 'a')
+-> loop through the nexts until you get the index
+   before the one to be deleted (value 'b')
+-> change the the next of index 1 to be the next of index 2
+-> decrement length
+-> return the value of the deleted node
+                    </code></pre>
+                    <p>
+
                     </p>
                 </div>
             </article>
