@@ -76,3 +76,15 @@ a[href="#"] {
 .invisible {
     visibility: hidden;
 }
+
+.body-figure {
+    width: 100%;
+    margin: 0;
+    color: #aaa;
+    font-size: 11px;
+    text-align: right;
+}
+
+.body-img {
+    width: 100%;
+}

@@ -29,10 +29,6 @@
                 <div class="chapter-head">
                     <div class="chapter-info full">
                         <h3 class="chapter-title">Big O</h3>
-                        <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
@@ -272,6 +268,109 @@ function makeTuples(input) {
                 </div>
             </article>
 
+            <h2 class="chapter-group-title">Data Structures - Interfaces</h2>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <div class="chapter-info full">
+                        <h3 class="chapter-title">Set</h3>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        We're going to quickly run through what some of the standard interfaces with data structures are. When I say interface, I mean that you, as a consumer of that data structure, actually don't know how it works underneath; you just know that it works in a certain way. It's a black box to you in that sense. We'll later go over several ways to implement these later.
+                    </p>
+                    <p>
+                        In any case, a set is pretty simple. You'll also hear them called collections depending which language you're working with. A set allows allows at least four things: add, remove, contains, and toList. The basic idea is that you can add items to a set and then later check if they're there. You can also request later a list of those items in the set (though with no guaranteed order; sets have no notion of order.) They're also useful for deduplication since you can only add something to a set once.
+                    </p>
+                </div>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <div class="chapter-info full">
+                        <h3 class="chapter-title">Map</h3>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Maps are quite similar to simple JavaScript objects. Maps are a set/collection of keys that have values associated with those keys. Unlike objects, they don't have prototypes, inheritance, methods, or anything of that sort. Maps are also similar to associative arrays in other languages. Again, since the keys are a set, there cannot be duplication of keys (makes sense, right?) You can have duplication of values though. Key 'thing' can have value 'map' while key 'other thing' can have a value of 'map' as well.
+                    </p>
+                </div>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <img class="chapter-img" src="img/stack.png" alt="Binary search tree" />
+                    <div class="chapter-info">
+                        <h3 class="chapter-title">Stack</h3>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Stack is an interface that adheres to the "Last-In First-Out" (LIFO) mantra. In a stack, you can only push (add) or pop (remove.) The last thing you pushed will be what pop returns to you (pop will also remove it from the stack.) Often they'll have a method called peek too which just looks at the top value of the stack without modifiying the stack.
+                    </p>
+                    <p>
+                        Think about programming a method in JavaScript
+                    </p>
+                    <pre><code>
+function double(x) { return 2x; }
+function squareAndAddFive(y) { return square(y) + 5; }
+function square(z) { return z * z; }
+
+function maths(num) {
+    var answer = double(num);
+    answer = squareAndAddFive(answer);
+    return answer;
+}
+
+maths(5);
+                    </code></pre>
+                    <p>
+                        Let's examine how JavaScript actually handles this.
+                    </p>
+                    <pre><code>
+-> maths is called; JS pushes maths call on its call stack
+-> inside maths, double is called; JS pushes double onto its call stack
+-> doubles completes, returns value 10; JS pops double off its call stack
+-> back inside maths, squareAndAddFive is called;
+   JS pushes squareAndAddFive on its call stack
+-> inside squareAndAddFive, square is called;
+   JS pushes square on its call stack
+
+Let's look at call stack right now
+
+square
+squareAndAddFive
+maths
+main
+
+-> sqaure completes, returns 100
+-> squareAndAddFive completes, returns 105
+-> maths completes, returns 105
+                    </code></pre>
+                    <p>
+                        As you can see, your code is modeled using a stack, and if you've done any amount of modern (often C based) programming, that should make some sense to you.
+                    </p>
+                </div>
+            </article>
+            <article class="chapter">
+                <div class="chapter-head">
+                    <img class="chapter-img" src="img/queue.png" alt="Binary search tree" />
+                    <div class="chapter-info">
+                        <h3 class="chapter-title">Queue</h3>
+                    </div>
+                </div>
+                <div class="chapter-text">
+                    <p>
+                        Can't talk about a stack without talking about a queue. Queues adhere to the "First-In First-Out" mantra. As the name may invoke the imagery for you, it's similar to people queueing in line (hopefully.) All stacks need to have the methods enqueue (add/push) and dequeue (remove/pop). Like stacks, they'll have peek to see what the next element is to dequeue.
+                    </p>
+                    <p>
+                        Queues are useful for lots of programming problems. How about print jobs? Usually you want things to print in the order sent to the printer; otherwise Janice from Accounting is going to be printing all of her documents before you can print anything.
+                    </p>
+                    <p>
+                        There are also priority queues as well. In a priority queue you also assign a priority to the elements that are enqueued. Items that have higher priorities get dequeued first. This is useful for networking; some packets are more important than others. If you're streaming video, that gets a high priority because getting a packet later means likely skipping some frames, whereas syncing to Dropbox can wait for a lull in network traffic to continue syncing.
+                    </p>
+                </div>
+            </article>
+
             <h2 class="chapter-group-title">Data Structures - Implementations</h2>
             <article class="chapter">
                 <div class="chapter-head">
@@ -333,9 +432,6 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
 -> decrement length
 -> return the value of the deleted node
                     </code></pre>
-                    <p>
-
-                    </p>
                 </div>
             </article>
             <article class="chapter">
@@ -344,14 +440,55 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
                     <div class="chapter-info">
                         <h3 class="chapter-title">Binary Search Tree</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/yePXzP?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/EPPWmy?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Trees cans be a useful structure for a middle ground between LinkedLists and ArrayLists. We're going to look a simple flavor of trees: the trusty binary search tree. The gist of the BST is that a node in a BST has zero, one, or two subtrees. Every element in the left subtree is lesser than the value of the node and every node in the right is greater. By being able to depend on this fact, it makes it very simple to add and find new elements. Like LinkedLists, we just have to change pointers when we add new elements. Let's step through an add.
+                    </p>
+                    <pre><code>
+Current Tree:
+      10
+    /   \
+  5      15
+ / \     /
+3   8   12
+
+-> .add is called with 7
+-> start at root (10)
+-> lesser than 10, go left to 5
+-> greater than 5, go right to 8
+-> lesser than 8, go left
+-> no element at left, create new node
+   and make it the left subtree of 8
+
+         10
+       /   \
+     5      15
+    / \     /
+   3   8   12
+      /
+     7
+                    </code></pre>
+                    <p>
+                        BSTs get an average case of <code>O(log n)</code> on gets, adds, and deletes, but they can have a worst case of <code>O(n)</code> if you do something like add a sorted list to a BST. Go ahead, do a BST then add [1,2,3,4,5] to it.
+                    </p>
+                    <pre><code>
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+                    </code></pre>
+                    <p>
+                        Kind of a problem, right? Well, we'll address that in the next problem. BSTs do perform well so long as you stay away from their edge cases.
                     </p>
                 </div>
             </article>
@@ -361,14 +498,127 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
                     <div class="chapter-info">
                         <h3 class="chapter-title">AVL Tree</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/qbVvJw?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/rxLOOp?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        AVL tree are the answer to the problem that BST have: BST can easily get out of balance. Even if it's not the worst case scenario of ascending or descending lists being added, even a random distribution on numbers on a BST is going to pretty heavy in places. There are several ways to balance these trees and we're going to tackle one of them: AVL trees. AVL is the intials of its authors: Georgy Adelson-Velsky and Evgenii Landis.
+                    </p>
+                    <p>
+                        AVLs are specialized BSTs. That is to say a valid AVL tree is always a valid BST (but not necessarily vice versa.) When you add a new value to a AVL tree, you do it the same way. The only difference is on the way up your recursive calls you check to see if the node is balanced after you added the new node. A tree is out of balance if its subtrees' difference of heights is greater than one.
+                    </p>
+                    <figure class="body-figure">
+                        <img src="img/avl2.gif" class="body-img" alt="Demonstrations of balanced and imbalanced AVL trees" />
+                        source: <a href="http://lcm.csa.iisc.ernet.in/dsa/node111.html">http://lcm.csa.iisc.ernet.in/dsa/node111.html</a>
+                    </figure>
+                    <p>
+                        So what's the benefit of all this extra effort? We can now guarantee that we won't hit those bad or worst case scenarios of having greatly out-of-balance trees and guaratee we won't hit the <code>O(n)</code> cases. Our worst case becomes <code>O(log n)</code>.
+                    </p>
+                    <p>
+                        So let's go through the hardest part of AVL trees, the rebalances (actually deletes may be harder but we're not going to do them!) The basic idea is that if one side of tree gets too heavy (ie the max height of one of its children is two more than the max height of the other child) then we need to perform a rotation to get the tree back in balance. Let's take a look at the most basic rotation.
+                    </p>
+                    <pre><code>
+5
+ \
+  8
+
+-> Currently valid AVL tree
+-> .add called with 9
+
+5 - node A
+ \
+  8 - node B
+   \
+    9 - node C
+
+(on the way up from the recursion)
+-> check balance of node C: left height is 0, right height is 0, balanced
+-> check balance of node B: left height is 0, right height is 1, balanced
+-> check balance of node A: left height is 0, right height is 2
+   unbalanced, right heavy, child is right heavy
+
+-> perform right rotation
+-> swap the values of nodes A and B
+-> make node B the left child of node A
+-> make node C the right child of node A
+-> move node B's right child to its left child
+   (in this case they're both null)
+-> make node A's _original_ left child
+   (which was null in this case) the left child of node B
+-> update the heights of all the nodes involved
+
+      8 - node A
+   /     \
+  5        9
+node B   node C
+                    </code></pre>
+                    <p>
+                        This was a right rotation, but a left rotation is mirror of this. This generalized formula works for all but one case which we'll examine now. Even in this special case, all you have to do is perform an extra rotation which you already have the logic for.
+                    </p>
+                    <pre><code>
+5
+ \
+  8
+
+-> currently valid AVL tree
+-> .add called with 7
+
+5 - node A
+ \
+  8 - node B
+ /
+7 - node C
+
+
+(on the way up from the recursion)
+-> check balance of node C: left height is 0, right height is 0, balanced
+-> check balance of node B: left height is 0, right height is 1, balanced
+-> check balance of node A: left height is 0, right height is 2,
+   unbalanced, right heavy, child is left heavy
+                    </code></pre>
+                    <p>
+                        Try performing just a straight right rotation. It's not super helpful because you just end up a still-unbalanced tree.
+                    </p>
+                    <pre><code>
+  8 - node A'
+ /
+5 - node B'
+ \
+  7 node C'
+                    </code></pre>
+                    <p>
+                        That's a problem, right? So now we have to what's called a double rotation. You perform a double rotation when the opposite child is heavy during a rotation. Look at our example (the 5\8/7 example.) We're doing a <em>right</em> rotation but the <em>left</em> child of the right child is heavy (it's not out of balance, it's just heavier than the right child.) So what we're going to do is before we do a left rotation on the right child before we do a right rotation on the root node of the rotation.
+                    </p>
+                    <pre><code>
+5 - node A
+ \
+  8 - node B
+ /
+7 - node C
+
+[ ... previous steps ]
+-> check balance of node A: left height is 0, right height is 2
+   unbalanced - right heavy, child is left heavy
+-> perform left rotation on left heavy right child node B
+
+5 - node A
+ \
+  7 - node B
+   \
+    8 - node C
+
+-> now perform right rotation on node A
+
+      7 - node A
+   /     \
+  5        8
+node B   node C
+                    </code></pre>
+                    <p>
+                        That's it! Nailing down the logic of those rotations is a pain but once you do AVL trees are just a series of either left or right rotations on a BST. Even deletes follow this pattern; it's just in deletes sometimes you have to do even more rotations.
                     </p>
                 </div>
             </article>
@@ -379,81 +629,47 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
                         <h3 class="chapter-title">Hash Table</h3>
                         <ul class="chapter-links">
                             <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/NxXLJz?editors=001">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Hash tables are extremely powerful tools in modern CS and are used extensively in things like programming languages' underpinnings, databases, caches, etc. They do have some tradesoffs, namely potentially memory footprints and the need for complicated hashing but they have constant time (<code>O(1)</code>) lookups, deletes, and adds if you're doing a set or map.
                     </p>
-                </div>
-            </article>
-
-            <h2 class="chapter-group-title">Data Structures - Concepts</h2>
-            <article class="chapter">
-                <div class="chapter-head">
-                    <div class="chapter-info full">
-                        <h3 class="chapter-title">Set</h3>
-                        <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        The gist of a hash table is you send your key through a hashing function (like MD5, SHA1, or one of your invention) which converts the to an addressable space (some sort of index.) Since in JavaScript we don't actually manage memory on that low of level, we're going to approximate the way it would work with a large empty array. However keep in mind that if this was a language where we managed our own memory we'd be doing that instead.
                     </p>
-                </div>
-            </article>
-            <article class="chapter">
-                <div class="chapter-head">
-                    <div class="chapter-info full">
-                        <h3 class="chapter-title">Map</h3>
-                        <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        This is powerful for maps because now our key points to exactly where our object is being store. And it's very powerful for sets because we can just check where if anything exists that memory address and if so then it exists; if not then that key is not in the set. When we delete or add there's no lookup cost either so we have constant time deletes, adds, and lookups. A perfect structure, right? Well, no, not really.
                     </p>
-                </div>
-            </article>
-            <article class="chapter">
-                <div class="chapter-head">
-                    <img class="chapter-img" src="img/stack.png" alt="Binary search tree" />
-                    <div class="chapter-info">
-                        <h3 class="chapter-title">Stack</h3>
-                        <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        First of all, this isn't useful for something an order with (a list of some sort) because your addresses won't have any notion of order.
                     </p>
-                </div>
-            </article>
-            <article class="chapter">
-                <div class="chapter-head">
-                    <img class="chapter-img" src="img/queue.png" alt="Binary search tree" />
-                    <div class="chapter-info">
-                        <h3 class="chapter-title">Queue</h3>
-                        <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Secondly, you need a sufficiently large footprint of memory to be able to store all of your objects without collisions (we'll talk about collisions in a sec.) This can balloon quickly.
+                    </p>
+                    <p>
+                        Thirdly, you'll need a good hashing algorithm that spits out a viable address for table. That algorithms needs to have several qualities to it. It needs to be idempotent. Idempotent is a fancy way of saying that a function given an input always outputs the same output. <code>function double(x) { return 2x; }</code> would be an idempotent function because if I do <code>double(5)</code> a million times, on the million-and-first try I'll still get the answer 10. The function double is idempotent. Take the following function:
+                    </p>
+                    <pre><code>
+var multiplier = 0;
+function doublePlus(x) {
+    multiplier++;
+    return 2x * multiplier;
+}
+                    </code></pre>
+                    <p>
+                        The above function is not idempotent because if I call I keep calling the doublePlus function with 5, I'm going to keep getting different answers. It is not idempotent because the function has side effects. Side effects are when calling a function makes some effect to the state surrounding it. You generally want to avoid side effects in programming as much as possible because it makes debugging much hard, makes your code less testable because it means you code must be in a certain state to work a certain way, and makes the code harder to read because you have to think about functions over term instead of in a vacuum because they depend on the code around them. Idempotence is critical in a good hashing function because given a certain input it always has to address the same place in memory or else the whole idea of a hash table falls apart.
+                    </p>
+                    <p>
+                        A good hashing algorithm needs to have a pretty good distribution of values. If it doesn't have a good distribution of values you are going to end up with collisions. Collisions happen when two inputs end up with the same the output, which means they are going to end up in the same spot in memory. That's a problem. An example of a poor hashing algorithm would be substituting 1 for a, 2 for b, 3 for c, etc. for a string. 'az' (1 + 26) and 'by' (2 + 25) are going to collide, as would 'za'. You need them to have a wide and as-even-as-possible distribution.
+                    </p>
+                    <p>
+                        A good hashing algorithm needs to be performant too; the point of a hash table to have lightning fast lookups and writes; if your hashing algorithm is mega slow then you're defeating the purpose; ie don't use cryptograhpically secure algorithms!
+                    </p>
+                    <p>
+                        The modulo operator (<code>%</code>) is important to understand in hashing too. Generally the numbers your hashing algorithms will generate huge numbers, numbers far larger than the size of your array. To ensure that your number falls in a legal limit of 0 to the largest index in the array, we're going to use the modulo operator. Remember doing long division in school? Where <code>10 / 3 = 3 remainder 1</code>? The modulo operator give you just the remainder. So <code>10 % 3 = 1</code>. It just totally throws away the result of the integer division. This is useful because now we can get huge numbers but still ensure they fall in an aceeptable range.
                     </p>
                 </div>
             </article>
