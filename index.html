@@ -18,9 +18,18 @@
             </ul>
         </article>
         <article class="intro">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore praesentium repudiandae atque quasi quod fugit veniam aut error beatae harum?</p>
-            <p>Aperiam explicabo veritatis sapiente aliquam ratione, suscipit recusandae obcaecati, delectus eius aliquid laboriosam optio quisquam quae nihil. Error, quis, nostrum.</p>
-            <p>Minus numquam doloremque quibusdam dignissimos fugit voluptas, facilis cum earum fugiat repellendus, tenetur possimus? Porro dignissimos maiores ex? Aperiam, rem.</p>
+            <p>
+                Welcome to our workshop! I have to admit, after creating these materials, that completing all this in six hours and really grasping it is ambitious to say the least. This is/can be difficult material and so I would tell you to not be frustrated if you don't get it at first. Remember, students in universites are given semesters to really grasp this.
+            </p>
+            <p>
+                Which brings me to my next point: it's a bit of a disservice to the great professors out there to say this is four semesters of their classes. While we are drawing from my first four semesters of material, there's a lot of other exercises and materials they go over in college. The title is somewhat of a clickbait title. However, I will say that I believe this material can be distilled down to a shorter and easier to digest level and that's what this class aims to do. This class aims to be a practical intro to CS for those who know JavaScript but have yet to delve into science of programming. This class is a first step.
+            </p>
+            <p>
+                Really, for any developer, the first and likely last book you need to read is <a href="https://mitpress.mit.edu/books/introduction-algorithms">Cormen's Intro to Algorithms</a> (available for free; thanks MIT.) This book, while not super fun to read, will serve you throughout your entire career. While computers have made leaps and bounds, we're still using the same algorithms and this book will impart that knowledge to you. Just read it, pay the tax, and benefit for the rest of your career! However, in the mean time, this is a good place to start to show that the mental gymnastics of algorithms and data structures are fun.
+            </p>
+            <p>
+                Have questions, comments, or concerns? Feel free to <a href="https://twitter.com/holtbt">tweet at me.</a> If there are typos, inaccuracies, or inconsistencies, please file an issue or make a pull request on the <a href="https://github.com/btholt/four-semesters-of-cs">GitHub repo</a>.
+            </p>
         </article>
         <section class="chapters">
 
@@ -580,7 +589,7 @@ node B   node C
    unbalanced, right heavy, child is left heavy
                     </code></pre>
                     <p>
-                        Try performing just a straight right rotation. It's not super helpful because you just end up a still-unbalanced tree.
+                        Try performing just a straight right rotation. It's not super helpful because you just end up with a still-unbalanced tree.
                     </p>
                     <pre><code>
   8 - node A'
@@ -628,7 +637,7 @@ node B   node C
                     <div class="chapter-info">
                         <h3 class="chapter-title">Hash Table</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/gPeayV?editors=001">Exercise</a></li>
                             <li class="chapter-link"><a href="http://codepen.io/btholt/pen/NxXLJz?editors=001">Answer</a></li>
                         </ul>
                     </div>
@@ -676,24 +685,44 @@ function doublePlus(x) {
 
             <h2 class="chapter-group-title">Functional Programming 101</h2>
             <article class="intro">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore praesentium repudiandae atque quasi quod fugit veniam aut error beatae harum?</p>
-                <p>Aperiam explicabo veritatis sapiente aliquam ratione, suscipit recusandae obcaecati, delectus eius aliquid laboriosam optio quisquam quae nihil. Error, quis, nostrum.</p>
-                <p>Minus numquam doloremque quibusdam dignissimos fugit voluptas, facilis cum earum fugiat repellendus, tenetur possimus? Porro dignissimos maiores ex? Aperiam, rem.</p>
+                <p>
+                    Functional programming is currently making a big resurgence in the front end community general consciousness. Though certainly none of it was invented here, it is starting to see more wide spread adoption in the front end community.
+                </p>
+                <p>
+                    There are many, many facets to functional programs and it's a disservice to say we're going to do anything but scratch the surface of the power of functional programming. Learning to functional program, whether you choose to adhere to its tenants going forward or not, will make you a much better programmer. It teachs you ways to structure your code to make it maintainable, composeable, and easy to reason about.
+                </p>
+                <p>
+                    We're going to focus in on a few key concepts. First would be avoiding side effects. We talked a bit about side effects earlier; we want to minimize where we affect state. This makes our program easier to reason about because we can easily reason through individual parts of our code. If your code has a lot of state that gets modified everywhere then you have reason through your code over time instead of being able to take tiny snapshots of individual functions. A function that modifies no state and is idempotent is called a pure function. We generally want small, focused, pure functions.
+                </p>
+                <p>
+                    Second, we're going to focus on higher order function. Because JavaScript has functions as first-class citizens, this makes pattern possible. We can pass functions into other functions, and this pattern of composition makes for some powerful paradigms. The few functions we're going to focus on are all higher order functions. Pure functions are important parts of higher order functions because we're going to run this functions over and over again.
+                </p>
+                <p>
+                    Third, we're going to typically focus on transforming lists of data. When you're operation exclusively on lists, it's called vector or array programming. When you're doing that, you can depend on the fact that you can take the output of one function and safely put that into the next function. We can chain calls together. Our code becomes expressive at this point. We begin describe <em>what</em> we want to happen rather than imperatively telling <em>how</em>.
+                </p>
             </article>
             <article class="chapter">
                 <div class="chapter-head">
                     <div class="chapter-info full">
                         <h3 class="chapter-title">Map</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/QyQxVP?editors=0010">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/Ywevex?editors=0010">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Map is a higher order function. That is to say it takes in another function and has its own logic on how to apply that function. Map is the first one we'll look at and amongst the useful tool in your functional programming tool box.
                     </p>
+                    <p>
+                        Map has similarities to forEach. It takes a function in and applies that function individually to each element in that array. Where it differs from forEach is that map creates a new array of the values returned within the function. It allows you to transform whole lists of values without modifiying the original list.
+                    </p>
+                    <pre><code>
+var array = [1,2,3,4,5];
+var transformed = array.map(function(num) { return num+1 });
+console.log(transformed); // [2,3,4,5,6]
+                    </code></pre>
                 </div>
             </article>
             <article class="chapter">
@@ -701,15 +730,28 @@ function doublePlus(x) {
                     <div class="chapter-info full">
                         <h3 class="chapter-title">Reduce</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/VeQVVq?editors=0010">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/GoQwBa?editors=0010">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        Next on our functional adventure is reduce. Reduce is really useful when you a have a list of values that you want to combine in some meaningful way down to one value. You'll often hear the term map/reduce thrown around in regards to data science; they're used a lot in that sense becuase you're taking large sets of data, doing some transformations on them to get them in a certain state, and then reducing them down to useful statistics.
                     </p>
+                    <p>
+                        A reduce function involves a list it's being called, a function that does the reducing, the accumulator, and the seed value. The accumulator is the interim value that is passed into each call of the reducer function that the function then returns. The value returned is then passed into the next call of the reducer function on the next value. The seed value is the value of the first accumulator. If there's no seed value, the zero index in the array is the seed.
+                    </p>
+                    <pre><code>
+var list = ['a','b','c'];
+list.reduce(function(accumulator, letter) {
+    return accumulator + letter.toUpperCase();
+}); // returns aBC since a becomes the seed
+
+list.reduce(function(accumulator, letter) {
+    return accumulator + letter.toUpperCase();
+}, ''); // returns ABC since '' starts as the seed
+                    </code></pre>
                 </div>
             </article>
             <article class="chapter">
@@ -717,14 +759,14 @@ function doublePlus(x) {
                     <div class="chapter-info full">
                         <h3 class="chapter-title">Filter</h3>
                         <ul class="chapter-links">
-                            <li class="chapter-link"><a href="#">Exercise</a></li>
-                            <li class="chapter-link"><a href="#">Answer</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/mVxezo?editors=0010">Exercise</a></li>
+                            <li class="chapter-link"><a href="http://codepen.io/btholt/pen/KVQLgr?editors=0010">Answer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deleniti nihil, non quia. Recusandae, nesciunt veritatis at rerum, dolorum quibusdam voluptatum. Magni tenetur tempora praesentium numquam aliquam quos ab modi expedita est in nostrum itaque placeat dignissimos, assumenda, laudantium quis.
+                        The third tool on our functional tool belt is filter. Filter does exactly what it sounds like: it takes a list of items and pares out some of the items you don't need in the list. All you have to do is right a filter function that returns true if you want the item to stay in the list or false if you want it removed from the list. The returned result is a new list with just the items you returned true on.
                     </p>
                 </div>
             </article>
