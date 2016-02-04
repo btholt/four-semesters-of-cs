@@ -397,7 +397,7 @@ main
                         We are going to talk about two types of implementations of array, ArrayList and LinkedList (terms we're borrowing from Java.) What we're going to do is to approximate how these work underneath the hood; in reality since JavaScript is a garbage-collected language that you don't have worry about allocation and de-allocation, it is simplified.
                     </p>
                     <p>
-                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indicies in the array. In other words, you just treat it like a normal array. However things get a mite more complicated when delete items from an ArrayList: you have the collapse the list down the spot where you deleted.
+                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indicies in the array. In other words, you just treat it like a normal array. However things get a bit more complicated when deleting items from an ArrayList: you have to collapse the list down to the spot where you deleted.
 
                         <pre><code>
 [a,b,c,d,e,f,g]
@@ -737,7 +737,7 @@ console.log(transformed); // [2,3,4,5,6]
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Next on our functional adventure is reduce. Reduce is really useful when you a have a list of values that you want to combine in some meaningful way down to one value. You'll often hear the term map/reduce thrown around in regards to data science; they're used a lot in that sense becuase you're taking large sets of data, doing some transformations on them to get them in a certain state, and then reducing them down to useful statistics.
+                        Next on our functional adventure is reduce. Reduce is really useful when you a have a list of values that you want to combine in some meaningful way down to one value. You'll often hear the term map/reduce thrown around in regards to data science; they're used a lot in that sense because you're taking large sets of data, doing some transformations on them to get them in a certain state, and then reducing them down to useful statistics.
                     </p>
                     <p>
                         A reduce function involves a list it's being called, a function that does the reducing, the accumulator, and the seed value. The accumulator is the interim value that is passed into each call of the reducer function that the function then returns. The value returned is then passed into the next call of the reducer function on the next value. The seed value is the value of the first accumulator. If there's no seed value, the zero index in the array is the seed.
@@ -766,7 +766,7 @@ list.reduce(function(accumulator, letter) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        The third tool on our functional tool belt is filter. Filter does exactly what it sounds like: it takes a list of items and pares out some of the items you don't need in the list. All you have to do is right a filter function that returns true if you want the item to stay in the list or false if you want it removed from the list. The returned result is a new list with just the items you returned true on.
+                        The third tool on our functional tool belt is filter. Filter does exactly what it sounds like: it takes a list of items and pares out some of the items you don't need in the list. All you have to do is write a filter function that returns true if you want the item to stay in the list or false if you want it removed from the list. The returned result is a new list with just the items you returned true on.
                     </p>
                 </div>
             </article>
