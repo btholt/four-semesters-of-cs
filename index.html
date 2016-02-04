@@ -397,7 +397,7 @@ main
                         We are going to talk about two types of implementations of array, ArrayList and LinkedList (terms we're borrowing from Java.) What we're going to do is to approximate how these work underneath the hood; in reality since JavaScript is a garbage-collected language that you don't have worry about allocation and de-allocation, it is simplified.
                     </p>
                     <p>
-                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indicies in the array. In other words, you just treat it like a normal array. However things get a mite more complicated when delete items from an ArrayList: you have the collapse the list down the spot where you deleted.
+                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indicies in the array. In other words, you just treat it like a normal array. However things get a bit more complicated when deleting items from an ArrayList: you have to collapse the list down to the spot where you deleted.
 
                         <pre><code>
 [a,b,c,d,e,f,g]
