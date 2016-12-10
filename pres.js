@@ -14,11 +14,14 @@
     var advance = function(e) {
         if (e.keyCode === 37) {
             // left arrow
-            counter--;
+            if (counter > 0) {
+                counter--;
+            }
             showOnly(counter);
-        }
-        else if (e.keyCode === 39) {
-            counter++;
+        } else if (e.keyCode === 39) {
+            if (counter < document.getElementsByTagName('article').length) {
+                counter++;
+            }
             showOnly(counter);
         }
     }
@@ -37,12 +40,18 @@
 
                 nodes[i].className = nodes[i].className.replace(replace, '');
                 nodes[i].scrollIntoView();
-            }
-            else if (nodes[i].className.indexOf('invisible') < 0) {
+            } else if (nodes[i].className.indexOf('invisible') < 0) {
                 nodes[i].className += (nodes[i].className.length) ? ' invisible' : 'invisible';
             }
         }
     };
+
+    (function addTarget() {
+        var nodes = document.getElementsByTagName('a');
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].setAttribute('target', '_blank');
+        }
+    })();
 
     startPres('start');
 })();
