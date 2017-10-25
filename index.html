@@ -42,7 +42,7 @@
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Big O is the way we analyze how efficient algorithms (or code in this case) without getting too mired in the details. We can model how much time any function is going to take given <em>n</em> inputs, but in reality we're interested in the order of magnitude of the number and necessarily of the exact figure.
+                        Big O is the way we analyze how efficient algorithms (or code in this case) are without getting too mired in the details. We can model how much time any function is going to take given <em>n</em> inputs, but in reality we're interested in the order of magnitude of the number, not necessarily the exact figure.
                     </p>
 
                     <p>
@@ -50,7 +50,7 @@
                     </p>
 
                     <p>
-                        Enter Big O. Think of the O as a vacuum that sucks in all the unimportant information and just leaves you with the important stuff. Let's look at a purely mathematical perspective for a second. Say we have the equation <code>3x² + x + 1</code>. If we plug in 5, the first term will be 75, the second term will be 5, and the third will be 1. In other words, most of the piece of the pie comes from the first term, to the point we can just ignore the other terms. If we plug in huge numbers, it becomes even more apparent. IE if we do 5,000,000, the first term is 75,000,000,000,000, the second is 5,000,000, and the last 1. A huge gap.
+                        Enter Big O. Think of the O as a vacuum that sucks in all the unimportant information and just leaves you with the important stuff. Let's look at a purely mathematical perspective for a second. Say we have the equation <code>3x² + x + 1</code>. If we plug in 5, the first term will be 75, the second term will be 5, and the third will be 1. In other words, most of the piece of the pie comes from the first term, to the point where we can just ignore the other terms. If we plug in huge numbers, it becomes even more apparent. I.E. if we do 5,000,000, the first term is 75,000,000,000,000, the second is 5,000,000, and the last is 1. A huge gap.
                     </p>
 
                     <p>
@@ -108,7 +108,7 @@ function makeTuples(input) {
                     </p>
 
                     <p>
-                        We'll get more into it later, but you can also have <code>O(log n)</code> if a code employs a divide-and-conquer strategy (often recursive,) meaning as you add more terms, the increases in time as you add input diminishes. We'll talk more about that with merge and quick sort.
+                        We'll get more into it later, but you can also have <code>O(log n)</code> if a code employs a divide-and-conquer strategy (often recursive,) meaning that as you add more terms, the increases in time as you add input diminishes. We'll talk more about that with merge and quick sort.
                     </p>
 
 
@@ -136,7 +136,7 @@ function makeTuples(input) {
                     </p>
 
                     <p>
-                        While recursion can make the code very simple for some problems, it inherently carries a potentially large footprint with it as every time you call the function, it adds another call to the stack. Some problems therefore are better solved in a slightly-more-complicated-but-more-effecient way of iteration (loops) instead of recursion.
+                        While recursion can make the code very simple for some problems, it inherently carries a potentially large footprint with it as every time you call the function, it adds another call to the stack. Some problems therefore are better solved in the slightly-more-complicated-but-more-effecient way of iteration (loops) instead of recursion.
                     </p>
                 </div>
             </article>
@@ -155,11 +155,11 @@ function makeTuples(input) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Our first sort! This is often the easiest to conceptualize and a natural way for the brain to think about sorting so it's typical to do bubble sort first. It's also amongst the least efficient in terms of worst case scenario.
+                        Our first sort! This is often the easiest to conceptualize and a natural way for the brain to think about sorting, so it's typical to do bubble sort first. It's also amongst the least efficient in terms of worst case scenario.
                     </p>
 
                     <p>
-                        In bubble sort, we're going to loop through the array and compare each index with the index next to it. If the those two numbers are out of order (the lesser index's value is greater than the greater index's value) we swap those two numbers' places in the array. We keep looping over that array until everything is in place and nothing was swapped during the last iteration.
+                        In bubble sort, we're going to loop through the array and compare each index with the index next to it. If those two numbers are out of order (the lesser index's value is greater than the greater index's value) we swap those two numbers' places in the array. We keep looping over that array until everything is in place and nothing was swapped during the last iteration.
                     </p>
                     <p>
                         What's the Big O on this? Well, there's an inner loop to check to see if indexes need to be swapped, and an outer loop that's just checking to see if anything was swapped. That would be make it <code>O(n²)</code>. Not efficient, but a great learning tool. You'll never use bubble sort for anything serious.
@@ -179,13 +179,13 @@ function makeTuples(input) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Insertion sort is a step more complex but a bit more useful than bubble sort and is occasionally useful. The worst case scenario for it is similar to bubble sort's but its best case makes it suited for times when you're pretty sure a list <em>almost</em> sorted or likely already sorted.
+                        Insertion sort is a step more complex but a bit more useful than bubble sort. The worst case scenario for it is similar to bubble sort's, but its best case makes it suited for times when you're pretty sure a list is <em>almost</em> sorted or likely already sorted.
                     </p>
                     <p>
-                        We're going to start at the beginning of the list and assume we have a sorted list of length 1 where the first element is only sorted element. We're then going to grab the second element, and insert it into the correct spot in our sorted list, either the 0 index or the 1 index, depending if it's smaller or larger than our first element. We now have a sorted list of length 2. We then continue on down the line, inserting elements in our sorted side of the list as the unsorted side dwindles.
+                        We're going to start at the beginning of the list and assume we have a sorted list of length 1 where the first element is only sorted element. We're then going to grab the second element, and insert it into the correct spot in our sorted list, either the 0 index or the 1 index, depending on if it's smaller or larger than our first element. We now have a sorted list of length 2. We then continue on down the line, inserting elements in our sorted side of the list as the unsorted side dwindles.
                     </p>
                     <p>
-                        What's the Big O? There's an inner loop that goes over your sorted list to find the correct place to insert your item, and an outer loop to go over all the numbers. Two loops means <code>O(n²)</code>. However since if your list is sorted or nearly so, it can be <code>O(n)</code> in a best case scenario and thus well adapted to that scenario.
+                        What's the Big O? There's an inner loop that goes over your sorted list to find the correct place to insert your item, and an outer loop to go over all the numbers. Two loops means <code>O(n²)</code>. However since your list is sorted or nearly so, it can be <code>O(n)</code> in a best case scenario and thus well adapted to that scenario.
                     </p>
                 </div>
             </article>
@@ -202,10 +202,10 @@ function makeTuples(input) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Our first divide-and-conquer algorithm! Merge sort is actually <em>very</em> useful and one of the easier divide-and-conquer algorithms to understand. It's easier to conceptualize than some of the other ones. A key to merge sort is that it is <em>recursive</em>. If you're struggling to grasp recursion, this is going to be doubly hard to understand this algorithm.
+                        Our first divide-and-conquer algorithm! Merge sort is actually <em>very</em> useful and one of the easier divide-and-conquer algorithms to understand. It's easier to conceptualize than some of the other ones. A key to merge sort is that it is <em>recursive</em>. If you're struggling to grasp recursion, it's going to be doubly hard to understand this algorithm.
                     </p>
                     <p>
-                        The basic gist of merge sort is that you're going to take your big list, and first divide down in two half size lists and recursively call merge sort on those smaller list, which in turn will do the same. The base case is when you have a list of one, at which point you will return that sorted list of one. On the way up the recursive calls, you will merge those sorted lists together (preferably by another merge function you'll write) that walks through both lists simultaneously and inserts the smaller value first, effectively creating a bigger sorted list.
+                        The basic gist of merge sort is that you're going to take your big list, and first divide it down into two half size lists and recursively call merge sort on those smaller list, which in turn will do the same. The base case is when you have a list of one, at which point you will return that sorted list of one. On the way up the recursive calls, you will merge those sorted lists together (preferably by another merge function you'll write) that walks through both lists simultaneously and inserts the smaller value first, effectively creating a bigger sorted list.
                     </p>
                     <pre><code>
 [1, 5, 6] sublist 1
@@ -220,7 +220,7 @@ function makeTuples(input) {
                     </code></pre>
 
                     <p>
-                        This combined merge with the divide-and-conquer recursion proves to be pretty effective. When you call <code>Array.prototype.sort</code> it often uses MergeSort (depending on the engine and the types of the elements in the array.) MergeSort is also <em>stable</em> which just means if you have equivalent elements, it will keep their original order in the array. This is sometimes important and sometimes not.
+                        This combined merge with the divide-and-conquer recursion proves to be pretty effective. When you call <code>Array.prototype.sort</code> it often uses MergeSort (depending on the engine and the types of the elements in the array.) MergeSort is also <em>stable</em> which just means that if you have equivalent elements, it will keep their original order in the array. This is sometimes important and sometimes not.
                     </p>
 
                     <p>
@@ -228,7 +228,7 @@ function makeTuples(input) {
                     </p>
 
                     <p>
-                        MergeSort's space complexity is a bit worse than the previous algorithms at <code>O(n)</code> since we have to create new lists as we go. It's not awful but it nonetheless a consideration.
+                        MergeSort's space complexity is a bit worse than the previous algorithms at <code>O(n)</code> since we have to create new lists as we go. It's not awful but it is nonetheless a consideration.
                     </p>
                 </div>
             </article>
@@ -245,10 +245,10 @@ function makeTuples(input) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Quicksort is one of the most useful and powerful sorting algorithms out there, and it's not terribly difficult to conceptualize (compared to some algorithms we're not talking about anyway.) Above I mentioned that occasionally JavaScript doesn't mergesort for <code>Array.prototype.sort</code>. In those other cases, it's usually some variant on quicksort.
+                        Quicksort is one of the most useful and powerful sorting algorithms out there, and it's not terribly difficult to conceptualize (compared to some algorithms we're not talking about anyway). Above, I mentioned that occasionally JavaScript doesn't mergesort for <code>Array.prototype.sort</code>. In those other cases, it's usually some variant on quicksort.
                     </p>
                     <p>
-                        It's another divide-and-conquer, recursive algorithm but it takes a slightly different approach. The basic gist is that you take the last element in the list and call that the pivot. Everything that's smaller than the pivot gets put into a "left" list and everything that's greater get's put in a "right" list. You then call quick sort on the left and right lists independently (hence the recursion.) After those two sorts come back, you concatenate the sorted left list, the pivot, and then the right list (in that order.) The base case is when you have a list of length 1 or 0, where you just return the list given to you.
+                        It's another divide-and-conquer recursive algorithm but it takes a slightly different approach. The basic gist is that you take the last element in the list and call that the pivot. Everything that's smaller than the pivot gets put into a "left" list and everything that's greater gets put in a "right" list. You then call quick sort on the left and right lists independently (hence the recursion). After those two sorts come back, you concatenate the sorted left list, the pivot, and then the sorted right list (in that order). The base case is when you have a list of length 1 or 0, where you just return the list given to you.
                     </p>
                     <pre><code>
 [4,9,3,5] list
@@ -272,7 +272,7 @@ function makeTuples(input) {
                     </code></pre>
 
                     <p>
-                        Another Big O of <code>O(n log n)</code> but takes up less memory than mergesort so it is often favored. However it does really poorly if you pass it a sorted list. Think about it. It would always have a pivot of the biggest number which defeats the effectiveness of the divide-and-conquer approach as one side will always contain all the elements. Hence not good for lists you expect may already be sorted. There are some tricks to employ to get around that like checking the beginning, middle, and end numbers and swapping them to try to get the best pivot, but that's outside our scope today. There are a lot of subtle variants on quicksort.
+                        Another Big O of <code>O(n log n)</code>, but takes up less memory than mergesort so it is often favored. However it does really poorly if you pass it a sorted list. Think about it. It would always have a pivot of the biggest number which defeats the effectiveness of the divide-and-conquer approach as one side will always contain all the elements. Hence not good for lists you expect may already be sorted. There are some tricks to employ to get around that like checking the beginning, middle, and end numbers and swapping them to try to get the best pivot, but that's outside our scope today. There are a lot of subtle variants on quicksort.
                     </p>
                 </div>
             </article>
@@ -289,7 +289,7 @@ function makeTuples(input) {
                         We're going to quickly run through what some of the standard interfaces with data structures are. When I say interface, I mean that you, as a consumer of that data structure, actually don't know how it works underneath; you just know that it works in a certain way. It's a black box to you in that sense. We'll later go over several ways to implement these later.
                     </p>
                     <p>
-                        In any case, a set is pretty simple. You'll also hear them called collections depending which language you're working with. A set allows allows at least four things: add, remove, contains, and toList. The basic idea is that you can add items to a set and then later check if they're there. You can also request later a list of those items in the set (though with no guaranteed order; sets have no notion of order.) They're also useful for deduplication since you can only add something to a set once.
+                        In any case, a set is pretty simple. You'll also hear them called collections depending which language you're working with. A set allows allows at least four things: add, remove, contains, and toList. The basic idea is that you can add items to a set and then later check if they're there. You can also request a list of those items in the set (though with no guaranteed order; sets have no notion of order). They're also useful for deduplication since you can only add something to a set once.
                     </p>
                 </div>
             </article>
@@ -314,7 +314,7 @@ function makeTuples(input) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Stack is an interface that adheres to the "Last-In First-Out" (LIFO) mantra. In a stack, you can only push (add) or pop (remove.) The last thing you pushed will be what pop returns to you (pop will also remove it from the stack.) Often they'll have a method called peek too which just looks at the top value of the stack without modifying the stack.
+                        Stack is an interface that adheres to the "Last-In First-Out" (LIFO) mantra. In a stack, you can only push (add) or pop (remove). The last thing you pushed will be what pop returns to you (pop will also remove it from the stack). Often they'll also have a method called peek, which just looks at the top value of the stack without modifying the stack.
                     </p>
                     <p>
                         Think about programming a method in JavaScript
@@ -340,9 +340,9 @@ maths(5);
 -> inside maths, double is called; JS pushes double onto its call stack
 -> doubles completes, returns value 10; JS pops double off its call stack
 -> back inside maths, squareAndAddFive is called;
-   JS pushes squareAndAddFive on its call stack
+   JS pushes squareAndAddFive onto its call stack
 -> inside squareAndAddFive, square is called;
-   JS pushes square on its call stack
+   JS pushes square onto its call stack
 
 Let's look at call stack right now
 
@@ -369,13 +369,13 @@ main
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Can't talk about a stack without talking about a queue. Queues adhere to the "First-In First-Out" mantra. As the name may invoke the imagery for you, it's similar to people queueing in line (hopefully.) All stacks need to have the methods enqueue (add/push) and dequeue (remove/pop). Like stacks, they'll have peek to see what the next element is to dequeue.
+                        Can't talk about a stack without talking about a queue. Queues adhere to the "First-In First-Out" mantra. As the name may invoke the imagery of for you, it's similar to people queueing in line (hopefully). All stacks need to have the methods enqueue (add/push) and dequeue (remove/pop). Like stacks, they'll have peek to see what the next element is to dequeue.
                     </p>
                     <p>
                         Queues are useful for lots of programming problems. How about print jobs? Usually you want things to print in the order sent to the printer; otherwise Janice from Accounting is going to be printing all of her documents before you can print anything.
                     </p>
                     <p>
-                        There are also priority queues as well. In a priority queue you also assign a priority to the elements that are enqueued. Items that have higher priorities get dequeued first. This is useful for networking; some packets are more important than others. If you're streaming video, that gets a high priority because getting a packet later means likely skipping some frames, whereas syncing to Dropbox can wait for a lull in network traffic to continue syncing.
+                        There are also priority queues as well. In a priority queue you also assign a priority to the elements that are enqueued. Items that have higher priorities get dequeued first. This is useful for networking; some packets are more important than others. If you're streaming video, that gets a high priority because getting a packet later likely means skipping some frames, whereas syncing to Dropbox can wait for a lull in network traffic to continue syncing.
                     </p>
                 </div>
             </article>
@@ -394,10 +394,10 @@ main
                 </div>
                 <div class="chapter-text">
                     <p>
-                        We are going to talk about two types of implementations of array, ArrayList and LinkedList (terms we're borrowing from Java.) What we're going to do is to approximate how these work underneath the hood; in reality since JavaScript is a garbage-collected language that you don't have worry about allocation and de-allocation, it is simplified.
+                        We are going to talk about two types of implementations of arrays, ArrayList and LinkedList (terms we're borrowing from Java.) What we're going to do is to approximate how these work underneath the hood; in reality, since JavaScript is a garbage-collected language where you don't have worry about allocation and de-allocation, it is simplified.
                     </p>
                     <p>
-                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indices in the array. In other words, you just treat it like a normal array. However things get a bit more complicated when deleting items from an ArrayList: you have to collapse the list down to the spot where you deleted.
+                        ArrayList is done by directly interacting with an allocated piece of memory. You then interact with that allocated piece of memory by addressing the specific indices in the array. In other words, you just treat it like a normal array. However, things get a bit more complicated when deleting items from an ArrayList: you have to collapse the list down to the spot where you deleted.
 
                         <pre><code>
 [a,b,c,d,e,f,g]
@@ -423,10 +423,10 @@ main
                 </div>
                 <div class="chapter-text">
                     <p>
-                        For our second data structure, we're going to implement a LinkedList. LinkedList is made of a bunch of nodes that point to the next one in the list. Every node in a LinkedLists has two properties, the value of whatever is being store and a pointer to the next node in the list.
+                        For our second data structure, we're going to implement a LinkedList. A LinkedList is made of a bunch of nodes, each of which point to the next one in the list. Every node in a LinkedLists has two properties, the value of whatever is being store and a pointer to the next node in the list.
                     </p>
                     <p>
-                        LinkedLists have their ups and downs. On one hand, adding and removing is a breeze: you just have the change the next pointer on the previous node and that's it. Getting is a pain though: if <code>.get</code> is called you have to loop through the nodes until you get to the right node. And that's the tradeoff between LinkedList and ArrayList: LinkedList's adds and deletes are <code>O(1)</code> but the gets are <code>O(n)</code>; ArrayList's adds and deletes are <code>O(n)</code> but the gets are <code>O(1)</code>. So which one is better? It depends! If you're doing a bunch of adds and deletes but not many gets, stick to LinkedLists. Doing a bunch of gets? ArrayLists. Both? You decide!
+                        LinkedLists have their pros and cons. On one hand, adding and removing is a breeze: you just have to change the next pointer on the previous node and that's it. Getting is a pain though: if <code>.get</code> is called, you have to loop through the nodes until you get to the right node. And that's the tradeoff between LinkedList and ArrayList: LinkedList's adds and deletes are <code>O(1)</code> but the gets are <code>O(n)</code>; ArrayList's adds and deletes are <code>O(n)</code> but the gets are <code>O(1)</code>. So which one is better? It depends! If you're doing a bunch of adds and deletes but not many gets, stick to LinkedLists. Doing a bunch of gets? ArrayLists. Both? You decide!
                     </p>
                     <p>Let's dissect a delete.</p>
                     <pre><code>
@@ -456,7 +456,7 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Trees cans be a useful structure for a middle ground between LinkedLists and ArrayLists. We're going to look a simple flavor of trees: the trusty binary search tree. The gist of the BST is that a node in a BST has zero, one, or two subtrees. Every element in the left subtree is lesser than the value of the node and every node in the right is greater. By being able to depend on this fact, it makes it very simple to add and find new elements. Like LinkedLists, we just have to change pointers when we add new elements. Let's step through an add.
+                        Trees cans be a useful structure for a middle ground between LinkedLists and ArrayLists. We're going to look at a simple flavor of trees: the trusty binary search tree. The gist of the BST is that a node in a BST has zero, one, or two subtrees. Every element in the left subtree is lesser than the value of the node and every node in the right is greater. By being able to depend on this fact, it makes it very simple to add and find new elements. Like LinkedLists, we just have to change pointers when we add new elements. Let's step through an add.
                     </p>
                     <pre><code>
 Current Tree:
@@ -514,10 +514,10 @@ Current Tree:
                 </div>
                 <div class="chapter-text">
                     <p>
-                        AVL tree are the answer to the problem that BST have: BST can easily get out of balance. Even if it's not the worst case scenario of ascending or descending lists being added, even a random distribution on numbers on a BST is going to pretty heavy in places. There are several ways to balance these trees and we're going to tackle one of them: AVL trees. AVL is the initials of its authors: Georgy Adelson-Velsky and Evgenii Landis.
+                        AVL trees are the answer to the problem that BSTs have: BST can easily get out of balance. Even if it's not the worst case scenario of ascending or descending lists being added, even a random distribution of numbers on a BST is going to be pretty heavy in places. There are several ways to balance these trees and we're going to tackle one of them: AVL trees. "AVL" comes from the initials of its authors: Georgy Adelson-Velsky and Evgenii Landis.
                     </p>
                     <p>
-                        AVLs are specialized BSTs. That is to say a valid AVL tree is always a valid BST (but not necessarily vice versa.) When you add a new value to a AVL tree, you do it the same way. The only difference is on the way up your recursive calls you check to see if the node is balanced after you added the new node. A tree is out of balance if its subtrees' difference of heights is greater than one.
+                        AVLs are specialized BSTs. That is to say, a valid AVL tree is always a valid BST (but not necessarily vice versa). When you add a new value to a AVL tree, you do it the same way. The only difference is on the way up your recursive calls you check to see if the node is balanced after you added the new node. A tree is out of balance if its subtrees' difference of heights is greater than one.
                     </p>
                     <figure class="body-figure">
                         <img src="img/avl2.gif" class="body-img" alt="Demonstrations of balanced and imbalanced AVL trees" />
@@ -527,7 +527,7 @@ Current Tree:
                         So what's the benefit of all this extra effort? We can now guarantee that we won't hit those bad or worst case scenarios of having greatly out-of-balance trees and guarantee we won't hit the <code>O(n)</code> cases. Our worst case becomes <code>O(log n)</code>.
                     </p>
                     <p>
-                        So let's go through the hardest part of AVL trees, the rebalances (actually deletes may be harder but we're not going to do them!) The basic idea is that if one side of tree gets too heavy (ie the max height of one of its children is two more than the max height of the other child) then we need to perform a rotation to get the tree back in balance. Let's take a look at the most basic rotation.
+                        So let's go through the hardest part of AVL trees, the rebalances (actually deletes may be harder but we're not going to do them!) The basic idea is that if one side of the tree gets too heavy (i.e. the max height of one of its children is two more than the max height of the other child) then we need to perform a rotation to get the tree back in balance. Let's take a look at the most basic rotation.
                     </p>
                     <pre><code>
 5
@@ -565,7 +565,7 @@ Current Tree:
 node B   node C
                     </code></pre>
                     <p>
-                        This was a right rotation, but a left rotation is mirror of this. This generalized formula works for all but one case which we'll examine now. Even in this special case, all you have to do is perform an extra rotation which you already have the logic for.
+                        This was a right rotation, but a left rotation is a mirror of this. This generalized formula works for all but one case, which we'll examine now. Even in this special case, all you have to do is perform an extra rotation which you already have the logic for.
                     </p>
                     <pre><code>
 5
@@ -599,7 +599,7 @@ node B   node C
   7 node C'
                     </code></pre>
                     <p>
-                        That's a problem, right? So now we have to what's called a double rotation. You perform a double rotation when the opposite child is heavy during a rotation. Look at our example (the 5\8/7 example.) We're doing a <em>right</em> rotation but the <em>left</em> child of the right child is heavy (it's not out of balance, it's just heavier than the right child.) So what we're going to do is before we do a left rotation on the right child before we do a right rotation on the root node of the rotation.
+                        That's a problem, right? So now we have to what's called a double rotation. You perform a double rotation when the opposite child is heavy during a rotation. Look at our example (the 5\8/7 example.) We're doing a <em>right</em> rotation but the <em>left</em> child of the right child is heavy (it's not out of balance, it's just heavier than the right child.) So what we're going to do is: do a left rotation on the right child before we do a right rotation on the root node of the rotation.
                     </p>
                     <pre><code>
 5 - node A
@@ -627,7 +627,7 @@ node B   node C
 node B   node C
                     </code></pre>
                     <p>
-                        That's it! Nailing down the logic of those rotations is a pain but once you do AVL trees are just a series of either left or right rotations on a BST. Even deletes follow this pattern; it's just in deletes sometimes you have to do even more rotations.
+                        That's it! Nailing down the logic of those rotations is a pain, but once you do, AVL trees are just a series of either left or right rotations on a BST. Even deletes follow this pattern; it's just that in deletes sometimes you have to do even more rotations.
                     </p>
                 </div>
             </article>
@@ -644,22 +644,22 @@ node B   node C
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Hash tables are extremely powerful tools in modern CS and are used extensively in things like programming languages' underpinnings, databases, caches, etc. They do have some tradeoffs, namely potentially memory footprints and the need for complicated hashing but they have constant time (<code>O(1)</code>) lookups, deletes, and adds if you're doing a set or map.
+                        Hash tables are extremely powerful tools in modern CS and are used extensively in things like programming languages' underpinnings, databases, caches, etc. They do have some tradeoffs, namely potentially large memory footprints and the need for complicated hashing, but they have constant time (<code>O(1)</code>) lookups, deletes, and adds if you're doing a set or map.
                     </p>
                     <p>
-                        The gist of a hash table is you send your key through a hashing function (like MD5, SHA1, or one of your invention) which converts the to an addressable space (some sort of index.) Since in JavaScript we don't actually manage memory on that low of level, we're going to approximate the way it would work with a large empty array. However keep in mind that if this was a language where we managed our own memory we'd be doing that instead.
+                        The gist of a hash table is, you send your key through a hashing function (like MD5, SHA1, or one of your invention) which converts the to an addressable space (some sort of index). Since in JavaScript we don't actually manage memory on that low of level, we're going to approximate the way it would work with a large empty array. However keep in mind that if this was a language where we managed our own memory we'd be doing that instead.
                     </p>
                     <p>
-                        This is powerful for maps because now our key points to exactly where our object is being store. And it's very powerful for sets because we can just check where if anything exists that memory address and if so then it exists; if not then that key is not in the set. When we delete or add there's no lookup cost either so we have constant time deletes, adds, and lookups. A perfect structure, right? Well, no, not really.
+                        This is powerful for maps because now our key points to exactly where our object is being stored. And it's very powerful for sets because we can just check if anything exists at that memory address, and if so then it exists; if not then that key is not in the set. When we delete or add there's no lookup cost either so we have constant time deletes, adds, and lookups. A perfect structure, right? Well, no, not really.
                     </p>
                     <p>
-                        First of all, this isn't useful for something an order with (a list of some sort) because your addresses won't have any notion of order.
+                        First of all, this isn't useful for something with an order (a list of some sort) because your addresses won't have any notion of order.
                     </p>
                     <p>
                         Secondly, you need a sufficiently large footprint of memory to be able to store all of your objects without collisions (we'll talk about collisions in a sec.) This can balloon quickly.
                     </p>
                     <p>
-                        Thirdly, you'll need a good hashing algorithm that spits out a viable address for table. That algorithms needs to have several qualities to it. It needs to be idempotent. Idempotent is a fancy way of saying that a function given an input always outputs the same output. <code>function double(x) { return 2x; }</code> would be an idempotent function because if I do <code>double(5)</code> a million times, on the million-and-first try I'll still get the answer 10. The function double is idempotent. Take the following function:
+                        Thirdly, you'll need a good hashing algorithm that spits out a viable address for the table. That algorithm needs to have several qualities to it. It needs to be idempotent. Idempotent is a fancy way of saying that a function given an input always outputs the same output. <code>function double(x) { return 2x; }</code> would be an idempotent function because if I do <code>double(5)</code> a million times, on the million-and-first try I'll still get the answer 10. The function double is idempotent. Take the following function:
                     </p>
                     <pre><code>
 var multiplier = 0;
@@ -669,16 +669,16 @@ function doublePlus(x) {
 }
                     </code></pre>
                     <p>
-                        The above function is not idempotent because if I call I keep calling the doublePlus function with 5, I'm going to keep getting different answers. It is not idempotent because the function has side effects. Side effects are when calling a function makes some effect to the state surrounding it. You generally want to avoid side effects in programming as much as possible because it makes debugging much hard, makes your code less testable because it means you code must be in a certain state to work a certain way, and makes the code harder to read because you have to think about functions over term instead of in a vacuum because they depend on the code around them. Idempotence is critical in a good hashing function because given a certain input it always has to address the same place in memory or else the whole idea of a hash table falls apart.
+                        The above function is not idempotent because if I keep calling the doublePlus function with 5, I'm going to keep getting different answers. It is not idempotent because the function has side effects. Side effects are when calling a function makes some effect to the state surrounding it. You generally want to avoid side effects in programming as much as possible because it makes debugging much harder, makes your code less testable (because it means your code must be in a certain state to work a certain way), and makes the code harder to read (because you have to think about functions over term instead of in a vacuum because they depend on the code around them). Idempotence is critical in a good hashing function because given a certain input, it always has to address the same place in memory or else the whole idea of a hash table falls apart.
                     </p>
                     <p>
                         A good hashing algorithm needs to have a pretty good distribution of values. If it doesn't have a good distribution of values you are going to end up with collisions. Collisions happen when two inputs end up with the same the output, which means they are going to end up in the same spot in memory. That's a problem. An example of a poor hashing algorithm would be substituting 1 for a, 2 for b, 3 for c, etc. for a string. 'az' (1 + 26) and 'by' (2 + 25) are going to collide, as would 'za'. You need them to have a wide and as-even-as-possible distribution.
                     </p>
                     <p>
-                        A good hashing algorithm needs to be performant too; the point of a hash table to have lightning fast lookups and writes; if your hashing algorithm is mega slow then you're defeating the purpose; ie don't use cryptographically secure algorithms!
+                        A good hashing algorithm needs to be performant too; the point of a hash table is to have lightning fast lookups and writes; if your hashing algorithm is mega slow then you're defeating the purpose; i.e. don't use cryptographically secure algorithms!
                     </p>
                     <p>
-                        The modulo operator (<code>%</code>) is important to understand in hashing too. Generally the numbers your hashing algorithms will generate huge numbers, numbers far larger than the size of your array. To ensure that your number falls in a legal limit of 0 to the largest index in the array, we're going to use the modulo operator. Remember doing long division in school? Where <code>10 / 3 = 3 remainder 1</code>? The modulo operator give you just the remainder. So <code>10 % 3 = 1</code>. It just totally throws away the result of the integer division. This is useful because now we can get huge numbers but still ensure they fall in an acceptable range.
+                        The modulo operator (<code>%</code>) is important to understand in hashing too. Generally your hashing algorithms will generate huge numbers, numbers far larger than the size of your array. To ensure that your number falls in a legal limit of 0 to the largest index in the array, we're going to use the modulo operator. Remember doing long division in school? Where <code>10 / 3 = 3 remainder 1</code>? The modulo operator give you just the remainder. So <code>10 % 3 = 1</code>. It just totally throws away the result of the integer division. This is useful because now we can get huge numbers but still ensure they fall in an acceptable range.
                     </p>
                 </div>
             </article>
@@ -689,16 +689,16 @@ function doublePlus(x) {
                     Functional programming is currently making a big resurgence in the front end community general consciousness. Though certainly none of it was invented here, it is starting to see more wide spread adoption in the front end community.
                 </p>
                 <p>
-                    There are many, many facets to functional programs and it's a disservice to say we're going to do anything but scratch the surface of the power of functional programming. Learning to functional program, whether you choose to adhere to its tenants going forward or not, will make you a much better programmer. It teaches you ways to structure your code to make it maintainable, compose able, and easy to reason about.
+                    There are many, many facets to functional programs and it's a disservice to say we're going to do anything but scratch the surface of the power of functional programming. Learning to functional program, whether you choose to adhere to its tenants going forward or not, will make you a much better programmer. It teaches you ways to structure your code to make it maintainable, composable, and easy to reason about.
                 </p>
                 <p>
-                    We're going to focus in on a few key concepts. First would be avoiding side effects. We talked a bit about side effects earlier; we want to minimize where we affect state. This makes our program easier to reason about because we can easily reason through individual parts of our code. If your code has a lot of state that gets modified everywhere then you have reason through your code over time instead of being able to take tiny snapshots of individual functions. A function that modifies no state and is idempotent is called a pure function. We generally want small, focused, pure functions.
+                    We're going to focus in on a few key concepts. First would be avoiding side effects. We talked a bit about side effects earlier; we want to minimize where we affect state. This makes our program easier to reason about because we can easily reason through individual parts of our code. If your code has a lot of state that gets modified everywhere, then you have to reason through your code over time instead of being able to take tiny snapshots of individual functions. A function that modifies no state and is idempotent is called a pure function. We generally want small, focused, pure functions.
                 </p>
                 <p>
-                    Second, we're going to focus on higher order function. Because JavaScript has functions as first-class citizens, this makes pattern possible. We can pass functions into other functions, and this pattern of composition makes for some powerful paradigms. The few functions we're going to focus on are all higher order functions. Pure functions are important parts of higher order functions because we're going to run this functions over and over again.
+                    Second, we're going to focus on higher order functions. Because JavaScript has functions as first-class citizens, this makes pattern possible. We can pass functions into other functions, and this pattern of composition makes for some powerful paradigms. The few functions we're going to focus on are all higher order functions. Pure functions are important parts of higher order functions because we're going to run these functions over and over again.
                 </p>
                 <p>
-                    Third, we're going to typically focus on transforming lists of data. When you're operation exclusively on lists, it's called vector or array programming. When you're doing that, you can depend on the fact that you can take the output of one function and safely put that into the next function. We can chain calls together. Our code becomes expressive at this point. We begin describe <em>what</em> we want to happen rather than imperatively telling <em>how</em>.
+                    Third, we're going to typically focus on transforming lists of data. When you're operating exclusively on lists, it's called vector or array programming. When you're doing that, you can depend on the fact that you can take the output of one function and safely put that into the next function. We can chain calls together. Our code becomes expressive at this point. We begin to describe <em>what</em> we want to happen rather than imperatively telling <em>how</em>.
                 </p>
             </article>
             <article class="chapter">
@@ -713,7 +713,7 @@ function doublePlus(x) {
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Map is a higher order function. That is to say it takes in another function and has its own logic on how to apply that function. Map is the first one we'll look at and amongst the useful tool in your functional programming tool box.
+                        Map is a higher order function. That is to say, it takes in another function and has its own logic on how to apply that function. Map is the first one we'll look at and amongst the most useful tools in your functional programming tool box.
                     </p>
                     <p>
                         Map has similarities to forEach. It takes a function in and applies that function individually to each element in that array. Where it differs from forEach is that map creates a new array of the values returned within the function. It allows you to transform whole lists of values without modifying the original list.
@@ -737,10 +737,10 @@ console.log(transformed); // [2,3,4,5,6]
                 </div>
                 <div class="chapter-text">
                     <p>
-                        Next on our functional adventure is reduce. Reduce is really useful when you a have a list of values that you want to combine in some meaningful way down to one value. You'll often hear the term map/reduce thrown around in regards to data science; they're used a lot in that sense because you're taking large sets of data, doing some transformations on them to get them in a certain state, and then reducing them down to useful statistics.
+                        Next on our functional adventure is reduce. Reduce is really useful when you have a list of values that you want to combine in some meaningful way down to one value. You'll often hear the term map/reduce thrown around in regards to data science; they're used a lot in that sense because you're taking large sets of data, doing some transformations on them to get them in a certain state, and then reducing them down to useful statistics.
                     </p>
                     <p>
-                        A reduce function involves a list it's being called, a function that does the reducing, the accumulator, and the seed value. The accumulator is the interim value that is passed into each call of the reducer function that the function then returns. The value returned is then passed into the next call of the reducer function on the next value. The seed value is the value of the first accumulator. If there's no seed value, the zero index in the array is the seed.
+                        A reduce function involves a list it's being called upon, a function that does the reducing, the accumulator, and the seed value. The accumulator is the interim value that is passed into each call of the reducer function that the function then returns. The value returned is then passed into the next call of the reducer function on the next value. The seed value is the value of the first accumulator. If there's no seed value, the zero index in the array is the seed.
                     </p>
                     <pre><code>
 var list = ['a','b','c'];
