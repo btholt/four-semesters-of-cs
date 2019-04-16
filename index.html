@@ -136,7 +136,7 @@ function makeTuples(input) {
                     </p>
 
                     <p>
-                        While recursion can make the code very simple for some problems, it inherently carries a potentially large footprint with it as every time you call the function, it adds another call to the stack. Some problems therefore are better solved in a slightly-more-complicated-but-more-effecient way of iteration (loops) instead of recursion.
+                        While recursion can make the code very simple for some problems, it inherently carries a potentially large footprint with it as every time you call the function, it adds another call to the stack. Some problems therefore are better solved in a slightly-more-complicated-but-more-efficient way of iteration (loops) instead of recursion.
                     </p>
                 </div>
             </article>
@@ -159,7 +159,7 @@ function makeTuples(input) {
                     </p>
 
                     <p>
-                        In bubble sort, we're going to loop through the array and compare each index with the index next to it. If the those two numbers are out of order (the lesser index's value is greater than the greater index's value) we swap those two numbers' places in the array. We keep looping over that array until everything is in place and nothing was swapped during the last iteration.
+                        In bubble sort, we're going to loop through the array and compare each index with the index next to it. If those two numbers are out of order (the lesser index's value is greater than the greater index's value) we swap those two numbers' places in the array. We keep looping over that array until everything is in place and nothing was swapped during the last iteration.
                     </p>
                     <p>
                         What's the Big O on this? Well, there's an inner loop to check to see if indexes need to be swapped, and an outer loop that's just checking to see if anything was swapped. That would be make it <code>O(n²)</code>. Not efficient, but a great learning tool. You'll never use bubble sort for anything serious.
@@ -289,7 +289,7 @@ function makeTuples(input) {
                         We're going to quickly run through what some of the standard interfaces with data structures are. When I say interface, I mean that you, as a consumer of that data structure, actually don't know how it works underneath; you just know that it works in a certain way. It's a black box to you in that sense. We'll later go over several ways to implement these later.
                     </p>
                     <p>
-                        In any case, a set is pretty simple. You'll also hear them called collections depending which language you're working with. A set allows allows at least four things: add, remove, contains, and toList. The basic idea is that you can add items to a set and then later check if they're there. You can also request later a list of those items in the set (though with no guaranteed order; sets have no notion of order.) They're also useful for deduplication since you can only add something to a set once.
+                        In any case, a set is pretty simple. You'll also hear them called collections depending which language you're working with. A set allows at least four things: add, remove, contains, and toList. The basic idea is that you can add items to a set and then later check if they're there. You can also request later a list of those items in the set (though with no guaranteed order; sets have no notion of order.) They're also useful for deduplication since you can only add something to a set once.
                     </p>
                 </div>
             </article>
@@ -437,7 +437,7 @@ next:  [ ]-> [ ]-> [ ]-> [ ]-> null
 -> grab the head (value 'a')
 -> loop through the nexts until you get the index
    before the one to be deleted (value 'b')
--> change the the next of index 1 to be the next of index 2
+-> change the next of index 1 to be the next of index 2
 -> decrement length
 -> return the value of the deleted node
                     </code></pre>
@@ -483,7 +483,7 @@ Current Tree:
      7
                     </code></pre>
                     <p>
-                        BSTs get an average case of <code>O(log n)</code> on gets, adds, and deletes, but they can have a worst case of <code>O(n)</code> if you do something like add a sorted list to a BST. Go ahead, do a BST then add [1,2,3,4,5] to it.
+                        BSTs get an average case of <code>O(log n)</code> on gets, adds, and deletes, but they can have a worst case of <code>O(n)</code> if you do something like adding a sorted list to a BST. Go ahead, do a BST then add [1,2,3,4,5] to it.
                     </p>
                     <pre><code>
 1
@@ -647,8 +647,9 @@ node B   node C
                         Hash tables are extremely powerful tools in modern CS and are used extensively in things like programming languages' underpinnings, databases, caches, etc. They do have some tradeoffs, namely potentially memory footprints and the need for complicated hashing but they have constant time (<code>O(1)</code>) lookups, deletes, and adds if you're doing a set or map.
                     </p>
                     <p>
-                        The gist of a hash table is you send your key through a hashing function (like MD5, SHA1, or one of your invention) which converts the to an addressable space (some sort of index.) Since in JavaScript we don't actually manage memory on that low of level, we're going to approximate the way it would work with a large empty array. However keep in mind that if this was a language where we managed our own memory we'd be doing that instead.
+                        The gist of a hash table is you send your key through a hashing function (like MD5, SHA1, or one of your invention) which converts them to an addressable space (some sort of index.) Since in JavaScript we don't actually manage memory on that low of level, we're going to approximate the way it would work with a large empty array. However keep in mind that if this was a language where we managed our own memory we'd be doing that instead.
                     </p>
+                    
                     <p>
                         This is powerful for maps because now our key points to exactly where our object is being store. And it's very powerful for sets because we can just check where if anything exists that memory address and if so then it exists; if not then that key is not in the set. When we delete or add there's no lookup cost either so we have constant time deletes, adds, and lookups. A perfect structure, right? Well, no, not really.
                     </p>
@@ -669,7 +670,7 @@ function doublePlus(x) {
 }
                     </code></pre>
                     <p>
-                        The above function is not idempotent because if I call I keep calling the doublePlus function with 5, I'm going to keep getting different answers. It is not idempotent because the function has side effects. Side effects are when calling a function makes some effect to the state surrounding it. You generally want to avoid side effects in programming as much as possible because it makes debugging much hard, makes your code less testable because it means you code must be in a certain state to work a certain way, and makes the code harder to read because you have to think about functions over term instead of in a vacuum because they depend on the code around them. Idempotence is critical in a good hashing function because given a certain input it always has to address the same place in memory or else the whole idea of a hash table falls apart.
+                        The above function is not idempotent because if I call I keep calling the doublePlus function with 5, I'm going to keep getting different answers. It is not idempotent because the function has side effects. Side effects are when calling a function makes some effect to the state surrounding it. You generally want to avoid side effects in programming as much as possible because it makes debugging much hard, makes your code less testable because it means your code must be in a certain state to work a certain way, and makes the code harder to read because you have to think about functions over term instead of in a vacuum because they depend on the code around them. Idempotence is critical in a good hashing function because given a certain input it always has to address the same place in memory or else the whole idea of a hash table falls apart.
                     </p>
                     <p>
                         A good hashing algorithm needs to have a pretty good distribution of values. If it doesn't have a good distribution of values you are going to end up with collisions. Collisions happen when two inputs end up with the same the output, which means they are going to end up in the same spot in memory. That's a problem. An example of a poor hashing algorithm would be substituting 1 for a, 2 for b, 3 for c, etc. for a string. 'az' (1 + 26) and 'by' (2 + 25) are going to collide, as would 'za'. You need them to have a wide and as-even-as-possible distribution.
