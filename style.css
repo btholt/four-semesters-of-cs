@@ -6,13 +6,33 @@ body {
     font-family: Helvetica Neue, Helvetica, sans-serif;
 }
 
-.outer-container {
-    margin: 0 auto;
-    width: 70%;
-    max-width: 600px;
+/* From Jekyll theme minima */
+
+@media screen and (max-width: 800px)  {
+  .outer-container {
+      max-width: -webkit-calc(800px - (30px));
+      max-width: calc(800px - (30px));
+      padding-right: 15px;
+      padding-left: 15px;
+  }
+
 }
 
-.intro, .leader, article {
+.outer-container{
+    max-width: -webkit-calc(800px - (30px * 2));
+    max-width: calc(800px - (30px * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+pre {
+  background: #eef;
+  overflow-x: auto;
+}
+
+.intro, .leader, aside, article {
     border: 2px solid #bbb;
     border-radius: 3px;
     margin: 10px 0;
@@ -29,7 +49,12 @@ body {
 ul {
     text-align: center;
     list-style: none;
-    padding: 0;
+    padding-left: 30px;
+}
+
+ul.toc {
+    text-align: left;
+    list-style: decimal;
 }
 
 a {
